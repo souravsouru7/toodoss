@@ -15,7 +15,7 @@ const TodoList = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/get");
+      const response = await axios.get("https://toodoss.onrender.com/get");
       setTodos(response.data);
     } catch (err) {
       setError('Failed to fetch todos');
@@ -26,7 +26,7 @@ const TodoList = () => {
   const addTodo = async () => {
     if (!newTask.trim()) return;
     try {
-      await axios.post("http://localhost:3001/addtask", { task: newTask });
+      await axios.post("https://toodoss.onrender.com/addtask", { task: newTask });
       setNewTask('');
       fetchTodos();
     } catch (err) {
@@ -37,7 +37,7 @@ const TodoList = () => {
 
   const updateTodo = async (id, task) => {
     try {
-      await axios.put(`http://localhost:3001/update/${id}`, { task });
+      await axios.put(`https://toodoss.onrender.com/update/${id}`, { task });
       setEditingId(null);
       fetchTodos();
     } catch (err) {
@@ -48,7 +48,7 @@ const TodoList = () => {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/del/${id}`);
+      await axios.delete(`https://toodoss.onrender.com/del/${id}`);
       fetchTodos();
     } catch (err) {
       setError('Failed to delete todo');
@@ -58,7 +58,7 @@ const TodoList = () => {
 
   const toggleDone = async (id, currentDone) => {
     try {
-      await axios.put(`http://localhost:3001/update/${id}`, { done: !currentDone });
+      await axios.put(`https://toodoss.onrender.com/update/${id}`, { done: !currentDone });
       fetchTodos();
     } catch (err) {
       setError('Failed to update todo status');
